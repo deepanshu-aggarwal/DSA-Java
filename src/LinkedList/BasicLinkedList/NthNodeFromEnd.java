@@ -7,7 +7,8 @@ public class NthNodeFromEnd {
         head.next.next=new Node(20);
         head.next.next.next=new Node(40);
 
-        int data=nthNodeEnd(head,4);
+//        int data=nthNodeEnd(head,4);
+        int data=nthNodeEndEfficient(head,3);
         System.out.println(data);
     }
 
@@ -30,5 +31,24 @@ public class NthNodeFromEnd {
             curr=curr.next;
         }
         return curr.data;
+    }
+
+    static int nthNodeEndEfficient(Node head, int k)
+    {
+        Node first=head,second=head;
+        int i=1;
+        while(i<=k)
+        {
+            if(first.next==null)
+                return -1;
+            first=first.next;
+            i++;
+        }
+        while(first!=null)
+        {
+            first=first.next;
+            second=second.next;
+        }
+        return second.data;
     }
 }
