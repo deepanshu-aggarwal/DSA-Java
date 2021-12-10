@@ -16,13 +16,14 @@ public class DetectLoop {
         head.next.next=new Node(20);
         head.next.next.next=new Node(40);
         head.next.next.next.next=new Node(80);
-//        head.next.next.next.next=head.next.next;
+        head.next.next.next.next.next=head.next.next;
 
 //        Boolean loop=detectLoop(head);
 //        Boolean loop=detectLoopUsingDummy(head);
 //        Boolean loop=detectLoopUsingHash(head);
-        Boolean loop=floydCycleDetection(head);
-        System.out.println(loop);
+//        Boolean loop=floydCycleDetection(head);
+        detectAndRemoveLoop(head);
+        BasicLinkedList.traverse(head);
     }
 
     static Boolean detectLoop(NodeB head)
@@ -79,6 +80,27 @@ public class DetectLoop {
                 return true;
         }
         return false;
+    }
+
+    static void detectAndRemoveLoop(Node head)
+    {
+        Node slow=head,fast=head;
+        while(fast!=null && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast)
+                break;
+        }
+        if(slow!=fast)
+            return;
+        slow=head;
+        while(slow.next!=fast.next)
+        {
+            slow=slow.next;
+            fast=fast.next;
+        }
+        fast.next=null;
     }
 }
 
