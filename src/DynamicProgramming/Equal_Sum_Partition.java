@@ -16,9 +16,7 @@ public class Equal_Sum_Partition {
     public static boolean recEqualPart(int[] arr, int sum, int n)
     {
         if(n==0)
-            return false;
-        if(sum==0)
-            return true;
+            return sum==0;
 
         if(sum >= arr[n-1])
         {
