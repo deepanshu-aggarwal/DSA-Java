@@ -18,8 +18,8 @@ public class LevelOrderTraversal {
 //            printK(root, i);
 //            System.out.println();
 //        }
-
-        efficientLOT(root);
+//        efficientLOT(root);
+        lotByLine(root);
     }
 
     public static int heightOfBT(Node root) {
@@ -58,4 +58,29 @@ public class LevelOrderTraversal {
                 q.add(ele.right);
         }
     }
+
+    public static void lotByLine(Node root) {
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+
+        while(q.size() > 1) {
+            Node ele = q.poll();
+            if(ele == null) {
+                System.out.println();
+                q.add(null);
+                continue;
+            }
+
+            System.out.print(ele.data + " ");
+
+            if(ele.left!=null)
+                q.add(ele.left);
+
+            if(ele.right!=null)
+                q.add(ele.right);
+        }
+    }
+
+
 }
