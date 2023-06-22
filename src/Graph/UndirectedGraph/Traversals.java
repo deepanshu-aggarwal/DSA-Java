@@ -1,4 +1,4 @@
-package Graph;
+package Graph.UndirectedGraph;
 
 import java.util.*;
 
@@ -27,8 +27,14 @@ public class Traversals {
         // dfs traversal
         dfs(1, adj, vis, dfsTraversal);
 
+        // dfs traversal using stack
+        vis = new boolean[n+1];
+        vis[1] = true;
+        ArrayList<Integer> dfsStackTraversal = dfsStack(1, adj, vis);
+
         System.out.println(bfsTraversal);
         System.out.println(dfsTraversal);
+        System.out.println(dfsStackTraversal);
     }
 
     public static ArrayList<Integer> bfs(ArrayList<ArrayList<Integer>> adj){
@@ -60,5 +66,22 @@ public class Traversals {
                 dfs(v, adj, vis, ls);
             }
         }
+    }
+
+    public static ArrayList<Integer> dfsStack(int val, ArrayList<ArrayList<Integer>> adj, boolean[] vis){
+        ArrayList<Integer> ls = new ArrayList<>();
+        Stack<Integer> st = new Stack<>();
+        st.push(val);
+        while(!st.isEmpty()){
+            int curr = st.pop();
+            ls.add(curr);
+            for(int v: adj.get(curr)){
+                if(!vis[v]){
+                    vis[v] = true;
+                    st.push(v);
+                }
+            }
+        }
+        return ls;
     }
 }

@@ -1,4 +1,4 @@
-package Trie.Concept;
+package Trie;
 
 class Node{
     Node[] links = new Node[26];
@@ -36,10 +36,14 @@ class Node{
 }
 
 class Trie{
-    private static Node root;
+    Node root;
 
     Trie(){
         root = new Node();
+    }
+
+    Node getRoot(){
+        return root;
     }
 
     void insert(String word){
@@ -47,12 +51,14 @@ class Trie{
         for(int i=0; i<word.length(); i++){
             char ch = word.charAt(i);
             if(!node.containsKey(ch)){
-                node.put(ch, new Node());
+                node.put(ch, new Node());   // creating a new node for the character
             }
+            // moves to the reference trie
             node = node.get(ch);
             node.incrCW();
         }
         node.incrEW();
+        node.setEnd();              // denotes that the word has ended, mark boolean to true
     }
 
     boolean search(String word){

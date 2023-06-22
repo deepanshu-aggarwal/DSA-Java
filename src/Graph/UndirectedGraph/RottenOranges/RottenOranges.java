@@ -1,4 +1,6 @@
-package Graph;
+package Graph.UndirectedGraph.RottenOranges;
+
+import Graph.UndirectedGraph.Graph;
 
 import java.util.*;
 

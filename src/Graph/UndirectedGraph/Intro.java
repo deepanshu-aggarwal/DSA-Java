@@ -1,8 +1,8 @@
-package Graph;
+package Graph.UndirectedGraph;
 import java.util.ArrayList;
 
 public class Intro {
-    public static void main(){
+    public static void main(String[] args){
         int n = 3;
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
 
@@ -22,9 +22,8 @@ public class Intro {
         // retrieving data
         for(int i=1; i<adj.size(); i++){
             for(int j=0; j<adj.get(i).size(); j++){
-                System.out.print(adj.get(i).get(j) + ", ");
+                System.out.println(i + ", " + adj.get(i).get(j));
             }
-            System.out.println();
         }
     }
 }
